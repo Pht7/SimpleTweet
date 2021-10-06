@@ -11,12 +11,14 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    //public String createdAt;
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
-        tweet.createdAt = jsonObject.getString("created_at");
+        //tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.createdAt = TimeFormatter.getTimeDifference(jsonObject.getString("created_at"));
         return tweet;
     }
 
